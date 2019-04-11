@@ -33,6 +33,7 @@ class UtiliesTest {
 		Utilies utilies=new Utilies();
 		int max=2;
 		int min=1;
+		//Issam esta aqui
 		boolean maxAlcanzado=false,minAlcanzado=false;
 		for (int i = 0; i < 100; i++) {
 			int obtenerAleatorio = utilies.obtenerAleatorio(min, max);
