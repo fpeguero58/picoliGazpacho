@@ -36,6 +36,7 @@ class UtiliesTest {
 		//Issam esta aqui
 		//Josuá tambien
 		//Issam esta aqui de nuevo
+		//Issam es Español de corazon y de cuerpo moro
 		boolean maxAlcanzado=false,minAlcanzado=false;
 		for (int i = 0; i < 100; i++) {
 			int obtenerAleatorio = utilies.obtenerAleatorio(min, max);
