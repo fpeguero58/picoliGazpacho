@@ -34,7 +34,8 @@ class UtiliesTest {
 		int max=2;
 		int min=1;
 		//Issam esta aqui
-		//Josuá tambien 
+		//Josuá tambien
+		//Issam esta aqui de nuevo
 		boolean maxAlcanzado=false,minAlcanzado=false;
 		for (int i = 0; i < 100; i++) {
 			int obtenerAleatorio = utilies.obtenerAleatorio(min, max);
