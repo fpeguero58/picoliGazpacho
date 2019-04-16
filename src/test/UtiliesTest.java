@@ -33,7 +33,6 @@ class UtiliesTest {
 		Utilies utilies=new Utilies();
 		int max=2;
 		int min=1;
-		//Issam esta aqui
 		//Josuá tambien
 		//Issam esta aqui de nuevo
 		//Issam es Español de corazon y de cuerpo moro
