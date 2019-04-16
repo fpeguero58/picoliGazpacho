@@ -27,7 +27,7 @@ class UtiliesTest {
 		assertTrue(minAlcanzado&&maxAlcanzado);
 		
 	}
-
+		
 	@Test
 	void testObtenerAleatorioIntInt() {
 		Utilies utilies=new Utilies();
