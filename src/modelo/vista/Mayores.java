@@ -1,7 +1,7 @@
 package modelo.vista;
 
 public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable {
-	
+	private int ahorros;
 
 	public Mayores(String nombre, int numeroIdentificacion, int esperanzaVida, int edad) {
 		super(nombre, numeroIdentificacion, esperanzaVida, edad);
