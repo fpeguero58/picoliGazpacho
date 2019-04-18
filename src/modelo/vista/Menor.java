@@ -15,7 +15,7 @@ public class Menor extends Ser implements Subvencionable {
 		return true;
 	}
 
-	public boolean mayoriaEdad(Menor menor) {
+	public boolean mayoriaEdad() {
 		return this.getEdad() >= 18;
 		// metodo en Estado que si este metodo es true, se elimine y cambie de
 		// coleccion.

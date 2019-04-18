@@ -15,4 +15,12 @@ public class Jubilados extends Ser implements Subvencionable, Ahorrable {
 		return false;
 	}
 
+	public int getAhorros() {
+		return ahorros;
+	}
+
+	public void setAhorros(int ahorros) {
+		this.ahorros = ahorros;
+	}
+
 }
