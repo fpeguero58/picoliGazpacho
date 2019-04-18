@@ -10,9 +10,12 @@ public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable
 
 	@Override
 	public boolean subvencionar() {
-		// TODO 
+		// TODO
 		// va a depender
 		return false;
 	}
 
+	public void aumentarAhorros() {
+		 ahorros += getNecesidadVital() * 0.50;
+	}
 }
