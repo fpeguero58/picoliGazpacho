@@ -2,19 +2,27 @@ package modelo.vista;
 
 public class Menor extends Ser implements Subvencionable {
 
-	public Menor(String nombre, int numeroIdentificacion, int esperanzaVida, int edad) {
-		super(nombre, numeroIdentificacion, esperanzaVida, edad);
-		
-		// TODO Auto-generated constructor stub
+	public Menor(String nombre, int numeroIdentificacion, int esperanzaVida) {
+		super(nombre, numeroIdentificacion, esperanzaVida);
 	}
 
 	@Override
-	public boolean subvencionar() {
-		// TODO 
-		// siempre true, depende solo la cantidad
-		return true;
+	public float subvencionar() {
+		// TODO
+		//esto ya lo ha hecho Issam en Estado directametne. 
+		return 0f;
 	}
 
-	
+	public boolean mayoriaEdad() {
+		return this.getEdad() >= 18;
+		// metodo en Estado que si este metodo es true, se elimine y cambie de
+		// coleccion.
+	}
+
+	@Override
+	public float subvencionar(float x) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
