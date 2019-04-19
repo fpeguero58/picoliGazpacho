@@ -4,13 +4,13 @@ import java.util.Stack;
 
 
 public class Factorias {
-
+	
 	private int idFactoria;
 	private int demanda;
 	private int numeroTrabajadores;
 	private Tamano tamano;
 	private Stack <Mayores> trabajadores= new Stack<Mayores>(); 
-
+	
 	public Factorias(int demanda, int numeroTrabajadores, int idFactoria, Tamano tamano) {
 		super();
 		this.demanda = demanda;
@@ -42,7 +42,7 @@ public class Factorias {
 	public void setTamano(Tamano tamano) {
 		this.tamano = tamano;
 	}
-
+	
 	public int getIdFactoria() {
 		return idFactoria;
 	}
@@ -54,11 +54,9 @@ public class Factorias {
 	public void contratarTrabajador(Mayores trabajador) {
 		trabajadores.push(trabajador);
 	}
-
+	
 	public Ser despedirTrabajador() {
 		return trabajadores.pop();
 	}
-
+	
 }
-
-
