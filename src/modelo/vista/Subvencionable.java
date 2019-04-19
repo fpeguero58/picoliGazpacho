@@ -2,5 +2,6 @@ package modelo.vista;
 
 public interface Subvencionable {
 	
-	public boolean subvencionar();
+	public float subvencionar();
+	public float subvencionar(float x);
 }
