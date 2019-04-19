@@ -43,4 +43,14 @@ public abstract class Ser {
 //		//TODO
 //	}
 	
+
+	public int gestionEsperanzaVida(Ser humano, boolean trabaja) {
+		
+		if(!trabaja) {
+			//para los jovenes necesitaremos saber el estado de las subvenciones que el estado les provee
+		}
+		
+		return 0;
+	}
+	
 }
