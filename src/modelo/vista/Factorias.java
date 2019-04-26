@@ -8,14 +8,12 @@ public class Factorias {
 	private int idFactoria;
 	private int demanda;
 	private int numeroTrabajadores;
-	private Tamano tamano;
 	private Stack <Mayores> trabajadores= new Stack<Mayores>(); 
 	
-	public Factorias(int demanda, int numeroTrabajadores, int idFactoria, Tamano tamano) {
+	public Factorias(int demanda, int numeroTrabajadores, int idFactoria) {
 		super();
 		this.demanda = demanda;
 		this.numeroTrabajadores = numeroTrabajadores;
-		this.tamano = tamano;
 		this.setIdFactoria(idFactoria);
 	}
 
@@ -35,13 +33,7 @@ public class Factorias {
 		this.numeroTrabajadores = numeroTrabajadores;
 	}
 
-	public Tamano getTamano() {
-		return tamano;
-	}
-
-	public void setTamano(Tamano tamano) {
-		this.tamano = tamano;
-	}
+	
 	
 	public int getIdFactoria() {
 		return idFactoria;
