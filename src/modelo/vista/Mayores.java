@@ -1,5 +1,6 @@
 package modelo.vista;
 
+
 public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable {
 	private float ahorros;
 
@@ -45,4 +46,16 @@ public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	@Override
+	public int compareTo(Ser o) {
+			if (this.equals(o)) {
+				return 0;
+			}else {
+				//quitar luego el int
+				return (int)(this.getNecesidadVital()-o.getNecesidadVital());
+			}
+	}
+
 }

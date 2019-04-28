@@ -1,6 +1,6 @@
 package modelo.vista;
 
-public abstract class Ser {
+public abstract class Ser implements Comparable<Ser>{
 
 	private String nombre;
 	private int numeroIdentificacion; // es unico y no varía
@@ -68,6 +68,14 @@ public abstract class Ser {
 	public boolean morir() {
 		return edad >= esperanzaVida;
 		//en Estado si es true, se elimina de colecciones.
+	}
+	@Override
+	public int compareTo(Ser o) {
+		if (this.equals(o)) {
+			return 0;
+		}else {
+			return this.edad-o.edad;
+		}
 	}
 
 }
