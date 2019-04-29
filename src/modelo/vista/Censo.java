@@ -15,6 +15,7 @@ public class Censo {
 	public PriorityQueue<Mayores> getDemandantes() {
 		return demandantes;
 	}
+	ArrayList<Ser> cosa=new ArrayList<Ser>();
 	
 	public void setDemandantes(PriorityQueue<Mayores> demandantes) {
 		this.demandantes = demandantes;
