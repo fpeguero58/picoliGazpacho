@@ -1,9 +1,9 @@
 package modelo.vista;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Stack;
 
 public class Censo {
 	int nacimientos=0;
@@ -15,11 +15,29 @@ public class Censo {
 	public PriorityQueue<Mayores> getDemandantes() {
 		return demandantes;
 	}
-	ArrayList<Ser> cosa=new ArrayList<Ser>();
-	
+	Comparator<Ser> comparador = new Comparator<Ser>() {
+		@Override
+		public int compare(Ser o1, Ser o2) {
+			return o1.getEdad()-o2.getEdad();
+		}
+	};
+	ArrayList<Ser> cosa=new ArrayList<>();
+	public void prueba() {
+	Mayores mayor=new Mayores("riquelme", 1, 10);
+	Menor menor=new Menor("ricky", 1, 10);
+	Jubilados jubilado=new Jubilados("Fernando", 5,80);
+	cosa.add(menor);
+	cosa.add(jubilado);
+	cosa.add(mayor);
+	Collections.sort(cosa, comparador);
+	for (Ser mayores : cosa) {
+		System.out.println(mayores.getNombre()+" "+mayores.getEdad());
+	}
+	}
 	public void setDemandantes(PriorityQueue<Mayores> demandantes) {
 		this.demandantes = demandantes;
 	}
+	
 	
 	public ArrayList <Ser> getPoblacion() {
 		return poblacion;
@@ -69,6 +87,6 @@ public class Censo {
 	}
 	public static void main(String[] args) {
 		Censo censo=new Censo();
-		censo.nacimiento(2450, 450);
+		censo.prueba();
 	}
 }

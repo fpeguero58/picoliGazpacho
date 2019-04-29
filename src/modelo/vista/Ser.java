@@ -77,5 +77,6 @@ public abstract class Ser implements Comparable<Ser>{
 			return this.edad-o.edad;
 		}
 	}
+	
 
 }
