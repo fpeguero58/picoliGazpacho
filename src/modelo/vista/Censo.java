@@ -26,9 +26,6 @@ public class Censo {
 		public int compare(Ser o1, Ser o2) {
 			double cosa=o1.getAhorros()*100000;
 			double cosaDos=o2.getAhorros()*100000;
-			if (o1.getAhorros()==o2.getAhorros()) {
-				return o1.hashCode()-o2.hashCode();
-			}
 			return (int)cosa-(int)(cosaDos);
 		}
 	};
@@ -38,7 +35,7 @@ public class Censo {
 	}
 	
 	public void organizarColeccionciones() {
-		Collections.sort(demandantes, comparadorNV);
+		Collections.sort(poblacion, comparador);
 		Collections.sort(demandantes, comparadorNV);
 	}
 
