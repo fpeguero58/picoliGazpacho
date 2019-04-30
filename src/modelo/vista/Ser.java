@@ -7,7 +7,7 @@ import java.util.Collections;
 public abstract class Ser {
 
 	private String nombre;
-	private int numeroIdentificacion; // es unico y no varía
+	private int numeroIdentificacion; // es unico y no varÃ­a
 	private int esperanzaVida; // aleatorio
 	private float necesidadVital;
 	private int edad;
@@ -51,5 +51,5 @@ public abstract class Ser {
 	public int getNumeroIdentificacion() {
 		return numeroIdentificacion;
 	}
-
 }
+
