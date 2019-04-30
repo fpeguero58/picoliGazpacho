@@ -1,5 +1,9 @@
 package modelo.vista;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 public abstract class Ser {
 
 	private String nombre;
@@ -69,5 +73,6 @@ public abstract class Ser {
 		return edad >= esperanzaVida;
 		//en Estado si es true, se elimina de colecciones.
 	}
+	
 
 }

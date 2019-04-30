@@ -2,6 +2,7 @@ package modelo.vista;
 
 public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable {
 	private float ahorros;
+	private float sueldo;
 
 	public Mayores(String nombre, int numeroIdentificacion, int esperanzaVida) {
 		super(nombre, numeroIdentificacion, esperanzaVida);
@@ -16,6 +17,16 @@ public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable
 
 	public void setAhorros(int ahorros) {
 		this.ahorros = ahorros;
+	}
+
+
+	public float getSueldo() {
+		return sueldo;
+	}
+
+
+	public void setSueldo(float sueldo) {
+		this.sueldo = sueldo;
 	}
 
 
