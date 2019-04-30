@@ -2,12 +2,11 @@ package modelo.vista;
 
 import java.util.Stack;
 
-
 public class Factorias {
-	
+
 	private int idFactoria;
-	private Stack <Mayores> trabajadores= new Stack<Mayores>(); 
-	
+	private Stack<Mayores> trabajadores = new Stack<Mayores>();
+
 	public Factorias(int idFactoria) {
 		super();
 		this.setIdFactoria(idFactoria);
@@ -16,7 +15,7 @@ public class Factorias {
 	public int getNumeroTrabajadores() {
 		return trabajadores.size();
 	}
-	
+
 	public int getIdFactoria() {
 		return idFactoria;
 	}
@@ -28,9 +27,9 @@ public class Factorias {
 	public void contratarTrabajador(Mayores trabajador) {
 		trabajadores.push(trabajador);
 	}
-	
+
 	public Mayores despedirTrabajador() {
 		return trabajadores.pop();
 	}
-	
+
 }
