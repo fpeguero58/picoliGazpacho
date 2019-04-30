@@ -11,13 +11,4 @@ public class MinisterioTiempo {
 		}
 	}
 
-	public void aumentarDemanda(float demanda) {
-		// TODO LE ENTRA LA DEMANDA DE ESTADO (?)
-		demanda += demanda / 10; 
-	}
-	public void disminuirDemanda(float demanda) {
-		// TODO LE ENTRA LA DEMANDA DE ESTADO (?)
-		demanda -= demanda / 10; 
-	}
-
 }
