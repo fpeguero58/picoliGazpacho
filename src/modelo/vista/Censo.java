@@ -93,7 +93,7 @@ public class Censo {
 		float reduccion;
 		for (Ser ser : poblacion) {
 			reduccion = (ser.getNecesidadVital() - ser.getAhorros()) / ser.getNecesidadVital();
-			if (reduccion < 0) {
+			if (reduccion > 0) {
 				if (reduccion >= 0.5) {
 					reduccion = 0.5f;
 				}
