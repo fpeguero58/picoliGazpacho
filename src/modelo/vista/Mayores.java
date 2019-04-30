@@ -2,23 +2,13 @@ package modelo.vista;
 
 
 public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable {
-	private float ahorros;
+	
 
 	public Mayores(String nombre, int numeroIdentificacion, int esperanzaVida) {
 		super(nombre, numeroIdentificacion, esperanzaVida);
 		this.setEdad(18);
 	}
 	
-
-	public float getAhorros() {
-		return ahorros;
-	}
-
-
-	public void setAhorros(int ahorros) {
-		this.ahorros = ahorros;
-	}
-
 
 	@Override
 	public float subvencionar(float subvencionEstado) {
@@ -39,6 +29,7 @@ public class Mayores extends Ser implements Subvencionable, Ahorrable, Empleable
 		// metodo en Estado que si este metodo es true, se elimine y cambie de
 		// coleccion.
 	}
+	
 
 
 	@Override

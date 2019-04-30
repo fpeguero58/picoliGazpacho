@@ -1,92 +1,110 @@
 package modelo.vista;
 
+import java.nio.FloatBuffer;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Censo {
-	int nacimientos=0;
-	private ArrayList <Ser> poblacion= new ArrayList<Ser>();
-//	private PriorityQueue<Ser> poblacion=new PriorityQueue<Ser>();
-	//esta coleccion se ordena segun el tiempo que lleven demandando trabajo, que serian lo que mas arriba estan. La excepcion es que la gente con menos ahorros subirá puestos en la lista obligatoriamente(consultar enunciado)
-	private PriorityQueue<Mayores> demandantes= new PriorityQueue<Mayores>();
-	
-	public PriorityQueue<Mayores> getDemandantes() {
-		return demandantes;
-	}
-	Comparator<Ser> comparador = new Comparator<Ser>() {
+	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
+	private LinkedList<Ser> demandantes = new LinkedList<Ser>();
+	private HashSet<Integer> identificacion = new HashSet<Integer>();
+	private Comparator<Ser> comparador = new Comparator<Ser>() {
 		@Override
 		public int compare(Ser o1, Ser o2) {
-			return o1.getEdad()-o2.getEdad();
+			return o1.getEdad() - o2.getEdad();
 		}
 	};
-	ArrayList<Ser> cosa=new ArrayList<>();
-	public void prueba() {
-	Mayores mayor=new Mayores("riquelme", 1, 10);
-	Menor menor=new Menor("ricky", 1, 10);
-	Jubilados jubilado=new Jubilados("Fernando", 5,80);
-	cosa.add(menor);
-	cosa.add(jubilado);
-	cosa.add(mayor);
-	Collections.sort(cosa, comparador);
-	for (Ser mayores : cosa) {
-		System.out.println(mayores.getNombre()+" "+mayores.getEdad());
+	private Comparator<Ser> comparadorNV = new Comparator<Ser>() {
+
+		@Override
+		
+		public int compare(Ser o1, Ser o2) {
+			double cosa=o1.getAhorros()*100000;
+			double cosaDos=o2.getAhorros()*100000;
+			if (o1.getAhorros()==o2.getAhorros()) {
+				return o1.hashCode()-o2.hashCode();
+			}
+			return (int)cosa-(int)(cosaDos);
+		}
+	};
+
+	public Queue<Ser> getDemandantes() {
+		return demandantes;
 	}
+	
+	public void organizarColeccionciones() {
+		Collections.sort(demandantes, comparadorNV);
+		Collections.sort(demandantes, comparadorNV);
 	}
-	public void setDemandantes(PriorityQueue<Mayores> demandantes) {
+
+	public void setDemandantes(LinkedList<Ser> demandantes) {
 		this.demandantes = demandantes;
 	}
-	
-	
-	public ArrayList <Ser> getPoblacion() {
+
+	public ArrayList<Ser> getPoblacion() {
 		return poblacion;
 	}
-	
-	public void setPoblacion(ArrayList <Ser> poblacion) {
+
+	public void setPoblacion(ArrayList<Ser> poblacion) {
 		this.poblacion = poblacion;
 	}
-	public int CalcularNacimiento(float demanda,float produccion) {
-		float produccionMia=produccion;
-		if (produccion>demanda) {
-			while (produccionMia>demanda) {
-				produccionMia-=1000;
-				nacimientos--;
-			}
-			nacimientos++;
 
-		}else {
-			while (produccionMia<=demanda) {
-				produccionMia+=1000;
-				nacimientos++;
-			}
-			nacimientos--;
-		}
-		if (nacimientos<=0) {
-			nacimientos=0;
-		}
-		return nacimientos;
+	public void nacimiento() {
+		Menor menor = new Menor(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+		poblacion.add(menor);
 	}
-	public void nacimiento(float demanda,float produccion) {
-		for (int i = 0; i < CalcularNacimiento(demanda, produccion); i++) {
-			Menor menor=new Menor(nombre, numeroIdentificacion, esperanzaVida);
-			poblacion.add(menor);
-		}
-	}
-	public void muerte(ArrayList<Ser> lista) {
-		for (Ser ser : lista) {
-			if (ser.morir()) {
-				lista.remove(ser);
-			}
-		}
-	}
-	public void reducirNV() {
+
+	public ArrayList<Ser> morir() {
+		ArrayList<Ser> trabajadoresMuertos = new ArrayList<>();
 		for (Ser ser : poblacion) {
-			ser.setNecesidadVital(necesidadVital);
+			if (ser.getEdad() > ser.getEsperanzaVida()) {
+				if (demandantes.contains(ser) && ser.getEdad() > 17 && ser.getEdad() < 65) {
+					trabajadoresMuertos.add(ser);
+				}
+				poblacion.remove(ser);
+				demandantes.remove(ser);
+			}
+		}
+		return trabajadoresMuertos;
+	}
+
+	public int CrearIdentificacion() {
+		int indice;
+		do {
+			indice = (int) (Math.random() * 9999999);
+			System.out.println(indice);
+		} while (!identificacion.add(indice));
+		return indice;
+	}
+
+	public String crearNombre() {
+		String nombre = "";
+		int indice;
+		for (int i = 0; i < 10; i++) {
+			indice = (int) (Math.random() * (122 - 97) + 97);
+			nombre = nombre + (char) (indice);
+		}
+		return nombre;
+	}
+
+	public void reducirEV() {
+		float reduccion;
+		for (Ser ser : poblacion) {
+			reduccion = (ser.getNecesidadVital() - ser.getAhorros()) / ser.getNecesidadVital();
+			if (reduccion < 0) {
+				if (reduccion >= 0.5) {
+					reduccion = 0.5f;
+				}
+				ser.setEsperanzaVida(ser.getEsperanzaVida() - reduccion);
+			}
 		}
 	}
-	public static void main(String[] args) {
-		Censo censo=new Censo();
-		censo.prueba();
-	}
+
 }

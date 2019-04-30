@@ -4,8 +4,9 @@ public abstract class Ser implements Comparable<Ser>{
 
 	private String nombre;
 	private int numeroIdentificacion; // es unico y no varía
-	private int esperanzaVida; // aleatorio
+	private float esperanzaVida; // aleatorio
 	private float necesidadVital;
+	private float ahorros;
 	private int edad;
 
 	public Ser(String nombre, int numeroIdentificacion, int esperanzaVida) {
@@ -16,11 +17,11 @@ public abstract class Ser implements Comparable<Ser>{
 		this.edad = 0;
 	}
 
-	public int getEsperanzaVida() {
+	public float getEsperanzaVida() {
 		return esperanzaVida;
 	}
 
-	public void setEsperanzaVida(int esperanzaVida) {
+	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}
 
@@ -47,6 +48,16 @@ public abstract class Ser implements Comparable<Ser>{
 	public int getNumeroIdentificacion() {
 		return numeroIdentificacion;
 	}
+	
+	public float getAhorros() {
+		return ahorros;
+	}
+
+
+	public void setAhorros(int ahorros) {
+		this.ahorros = ahorros;
+	}
+
 
 	
 //	public void morir() {
