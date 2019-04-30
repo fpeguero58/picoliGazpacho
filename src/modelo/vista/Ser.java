@@ -52,27 +52,4 @@ public abstract class Ser {
 		return numeroIdentificacion;
 	}
 
-	
-//	public void morir() {
-//		//TODO
-//	}
-	
-
-	public int gestionEsperanzaVida(Ser humano, boolean trabaja) {
-		
-		if(!trabaja) {
-			//para los jovenes necesitaremos saber el estado de las subvenciones que el estado les provee
-		}
-		
-		return 0;
-	}
-	
-
-
-	public boolean morir() {
-		return edad >= esperanzaVida;
-		//en Estado si es true, se elimina de colecciones.
-	}
-	
-
 }
