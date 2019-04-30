@@ -1,15 +1,13 @@
 package modelo.vista;
 
-import java.nio.FloatBuffer;
-import java.util.ArrayDeque;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Stack;
+
 
 public class Censo {
 	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
