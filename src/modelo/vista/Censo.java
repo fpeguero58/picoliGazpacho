@@ -13,6 +13,9 @@ public class Censo {
 	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
 	private LinkedList<Ser> demandantes = new LinkedList<Ser>();
 	private HashSet<Integer> identificacion = new HashSet<Integer>();
+	
+	
+	
 	private Comparator<Ser> comparador = new Comparator<Ser>() {
 		@Override
 		public int compare(Ser o1, Ser o2) {
@@ -52,7 +55,7 @@ public class Censo {
 	}
 
 	public void nacimiento() {
-		Menor menor = new Menor(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+		Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
 		poblacion.add(menor);
 	}
 
