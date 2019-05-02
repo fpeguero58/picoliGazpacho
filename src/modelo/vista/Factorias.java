@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Factorias {
 
 	private int idFactoria;
-	private Stack<Mayores> trabajadores = new Stack<Mayores>();
+	private Stack<Ser> trabajadores = new Stack<Ser>();
 
 	public Factorias(int idFactoria) {
 		super();
@@ -24,11 +24,11 @@ public class Factorias {
 		this.idFactoria = idFactoria;
 	}
 
-	public void contratarTrabajador(Mayores trabajador) {
+	public void contratarTrabajador(Ser trabajador) {
 		trabajadores.push(trabajador);
 	}
 
-	public Mayores despedirTrabajador() {
+	public Ser despedirTrabajador() {
 		return trabajadores.pop();
 	}
 
