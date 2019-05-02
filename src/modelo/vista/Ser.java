@@ -8,7 +8,7 @@ public abstract class Ser {
 
 	private String nombre;
 	private int numeroIdentificacion; // es unico y no varía
-	private int esperanzaVida; // aleatorio
+	private float esperanzaVida; // aleatorio
 	private float necesidadVital;
 	private int edad;
 
@@ -20,11 +20,11 @@ public abstract class Ser {
 		this.edad = 0;
 	}
 
-	public int getEsperanzaVida() {
+	public float getEsperanzaVida() {
 		return esperanzaVida;
 	}
 
-	public void setEsperanzaVida(int esperanzaVida) {
+	public void setEsperanzaVida(float esperanzaVida) {
 		this.esperanzaVida = esperanzaVida;
 	}
 
