@@ -8,6 +8,11 @@ public class MinisterioIndustria {
 	private float demanda;
 	private final int MIN_TRABAJADORES=300;
 	private final int MAX_TRABAJADORES=1000;
+	
+	public MinisterioIndustria() {
+		this.demanda=96725;
+		industrias.add(new Factorias(0));
+	}
 
 
 	public Stack <Factorias> getIndustrias() {
@@ -48,7 +53,7 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void altaTrabajador(PriorityQueue <Mayores> demandantes, Stack <Factorias> industrias) {
+	public void altaTrabajador(PriorityQueue <Ser> demandantes, Stack <Factorias> industrias) {
 		boolean creacion=true;
 		
 		for(Factorias i: industrias) {
@@ -62,7 +67,7 @@ public class MinisterioIndustria {
 		}
 	}
 	
-	public void bajaTrabajador(PriorityQueue <Mayores> demandantes, Stack <Factorias> industrias) {
+	public void bajaTrabajador(PriorityQueue <Ser> demandantes, Stack <Factorias> industrias) {
 		demandantes.add(industrias.pop().despedirTrabajador());
 	}
 	

@@ -1,16 +1,15 @@
 package modelo.vista;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
-
-public abstract class Ser {
+public class Ser {
 
 	private String nombre;
 	private int numeroIdentificacion; // es unico y no varía
 	private float esperanzaVida; // aleatorio
 	private float necesidadVital;
 	private int edad;
+	private float sueldo;
+	private float ahorros;
 
 	public Ser(String nombre, int numeroIdentificacion, int esperanzaVida) {
 		super();
@@ -50,6 +49,22 @@ public abstract class Ser {
 
 	public int getNumeroIdentificacion() {
 		return numeroIdentificacion;
+	}
+
+	public float getAhorros() {
+		return ahorros;
+	}
+
+	public void setAhorros(float ahorros) {
+		this.ahorros = ahorros;
+	}
+
+	public float getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(float sueldo) {
+		this.sueldo = sueldo;
 	}
 }
 
