@@ -27,6 +27,13 @@ public class Factorias {
 	public void contratarTrabajador(Ser trabajador) {
 		trabajadores.push(trabajador);
 	}
+	public void trabajadorMuerto(Ser ser) {
+		trabajadores.remove(ser);
+	}
+
+	public Stack<Ser> getTrabajadores() {
+		return trabajadores;
+	}
 
 	public Ser despedirTrabajador() {
 		return trabajadores.pop();
