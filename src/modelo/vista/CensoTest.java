@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import org.ietf.jgss.Oid;
 import org.junit.jupiter.api.Test;
 
 class CensoTest {
@@ -28,6 +29,14 @@ class CensoTest {
 	ArrayList<Ser>muertos=censo.morir();
 	assertTrue(muertos.containsAll(muertosTest));
 	System.out.println(censo.getPoblacion().size());
+	censo.organizarColeccionciones();
+	int posFinal=0;
+	for (int i = 0; i < censo.getPoblacion().size(); i++) {
+		if (censo.getPoblacion().get(i).getEdad()<18) {
+			posFinal=i;
+		}
+	}
+	System.out.println(posFinal);
 	
 	}
 	@Test
