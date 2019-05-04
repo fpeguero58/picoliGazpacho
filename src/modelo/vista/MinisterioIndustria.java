@@ -11,7 +11,8 @@ public class MinisterioIndustria {
 	private float demanda;
 	private final int MIN_TRABAJADORES = 300;
 	private final int MAX_TRABAJADORES = 1000;
-
+	private int jubilaciones= 0; // lo he puesto yo (jesus)
+	
 	public MinisterioIndustria() {
 		this.demanda = 96725;
 		industrias.add(new Factorias(0));
@@ -55,6 +56,19 @@ public class MinisterioIndustria {
 			}
 		}
 	}
+	public void jubilarTrabajadores(){
+		ArrayList<Ser> jubilados = new ArrayList<>();
+		for (Factorias factorias : industrias) {
+			for (Ser ser : factorias.getTrabajadores()) {
+				if(ser.getEdad()>64) {
+					jubilados.add(ser);
+					jubilaciones++; //lo acabo de poner yo (jesus)
+			}
+				factorias.getTrabajadores().removeAll(jubilados);
+				}
+			}
+		}
+	
 
 	public void altaTrabajador(LinkedList<Ser> demandantes) {
 		boolean creacion = true;
