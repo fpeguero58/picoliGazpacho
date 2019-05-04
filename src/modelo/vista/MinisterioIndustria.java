@@ -11,7 +11,6 @@ public class MinisterioIndustria {
 	private float demanda;
 	private final int MIN_TRABAJADORES = 300;
 	private final int MAX_TRABAJADORES = 1000;
-	private int jubilaciones= 0; // lo he puesto yo (jesus)
 	
 	public MinisterioIndustria() {
 		this.demanda = 96725;
@@ -56,7 +55,9 @@ public class MinisterioIndustria {
 			}
 		}
 	}
-	public void jubilarTrabajadores(){
+	
+	public int jubilarTrabajadores(){
+		int jubilaciones=0;
 		ArrayList<Ser> jubilados = new ArrayList<>();
 		for (Factorias factorias : industrias) {
 			for (Ser ser : factorias.getTrabajadores()) {
@@ -67,6 +68,7 @@ public class MinisterioIndustria {
 				factorias.getTrabajadores().removeAll(jubilados);
 				}
 			}
+		return jubilaciones;
 		}
 	
 
