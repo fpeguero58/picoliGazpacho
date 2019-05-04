@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,11 +31,7 @@ public class UI extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
 	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
 	private JTextField textField_13;
 	private JTextField textField_14;
 	private JTextField textField_15;
@@ -44,6 +42,9 @@ public class UI extends JFrame {
 	private JPanel pnlPoblacion;
 	private JPanel pnlEstadoLocal;
 	private JPanel pnlEstadoGlobal;
+	private JButton btnIncrementarPorcentajeProduccion;
+	private JButton btnPasarPeriodo;
+	private JButton btnDecrementarPorcentajeProduccion;
 
 
 	/**
@@ -161,24 +162,24 @@ public class UI extends JFrame {
 		pnlBotonera.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton = new JButton("Incrementa Porcentaje Produccion");
-		panel.add(btnNewButton);
-		btnNewButton.setActionCommand("");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBackground(Color.GREEN);
-		btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
+		btnIncrementarPorcentajeProduccion = new JButton("Incrementa Porcentaje Produccion");
+		panel.add(btnIncrementarPorcentajeProduccion);
+		btnIncrementarPorcentajeProduccion.setActionCommand("");
+		btnIncrementarPorcentajeProduccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIncrementarPorcentajeProduccion.setBackground(Color.GREEN);
+		btnIncrementarPorcentajeProduccion.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
 		
-		JButton btnNewButton_2 = new JButton("Pasar un periodo");
-		panel.add(btnNewButton_2);
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		btnNewButton_2.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
-		btnNewButton_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnPasarPeriodo = new JButton("Pasar un periodo");
+		panel.add(btnPasarPeriodo);
+		btnPasarPeriodo.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		btnPasarPeriodo.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
+		btnPasarPeriodo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JButton btnNewButton_1 = new JButton("Decrementa porcentaje produccion");
-		panel.add(btnNewButton_1);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton_1.setBackground(Color.RED);
-		btnNewButton_1.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
+		btnDecrementarPorcentajeProduccion = new JButton("Decrementa porcentaje produccion");
+		panel.add(btnDecrementarPorcentajeProduccion);
+		btnDecrementarPorcentajeProduccion.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnDecrementarPorcentajeProduccion.setBackground(Color.RED);
+		btnDecrementarPorcentajeProduccion.setBorder(new LineBorder(new Color(0, 0, 0), 7, true));
 		
 		pnlEstadoLocal = new JPanel();
 		contentPane.add(pnlEstadoLocal, "cell 0 1,grow");
@@ -195,34 +196,6 @@ public class UI extends JFrame {
 		JLabel lblOcupacion = new JLabel("% ocupacion");
 		lblOcupacion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pnlEstadoLocal.add(lblOcupacion, "cell 5 2");
-		
-		JLabel lblPequeas = new JLabel("pequeñas");
-		lblPequeas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(lblPequeas, "cell 1 4,alignx trailing");
-		
-		textField_8 = new JTextField();
-		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(textField_8, "flowx,cell 3 4");
-		textField_8.setColumns(10);
-		
-		textField_11 = new JTextField();
-		textField_11.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(textField_11, "cell 5 4");
-		textField_11.setColumns(10);
-		
-		JLabel lblMedianas = new JLabel("medianas");
-		lblMedianas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(lblMedianas, "cell 1 6,alignx trailing");
-		
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(textField_9, "cell 3 6");
-		textField_9.setColumns(10);
-		
-		textField_12 = new JTextField();
-		textField_12.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pnlEstadoLocal.add(textField_12, "cell 5 6");
-		textField_12.setColumns(10);
 		
 		JLabel lblGrandes = new JLabel("grandes");
 		lblGrandes.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -309,4 +282,19 @@ public class UI extends JFrame {
 		return retorno;
 	}
 
+
+	public JButton getBtnIncrementarPorcentajeProduccion() {
+		return btnIncrementarPorcentajeProduccion;
+	}
+
+
+	public JButton getBtnPasarPeriodo() {
+		return btnPasarPeriodo;
+	}
+
+
+	public JButton getBtnDecrementarPorcentajeProduccion() {
+		return btnDecrementarPorcentajeProduccion;
+	}
+	
 }

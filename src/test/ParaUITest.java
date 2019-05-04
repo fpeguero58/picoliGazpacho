@@ -13,7 +13,7 @@ class ParaUITest {
 	@Test
 	void testRellenarComunicadorPoblacion() {
 		DatosPoblacion datosPoblacion = new DatosPoblacion(1, 2, 3, 4, 5, 6, 7, 8);
-		DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(1, 2, 3, 4, 5, 6);
+		DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(1, 2);
 		DatosEstadoGlobal datosEstadoGlobal = new DatosEstadoGlobal(1, 2, 3, 4);
 		ParaUI paraUI = new ParaUI();
 		paraUI.setDatosEnElInterfazUsuario(datosPoblacion, datosEstadoLocal, datosEstadoGlobal);
