@@ -13,6 +13,30 @@ public class Censo {
 	private LinkedList<Ser> demandantes = new LinkedList<Ser>();
 	private HashSet<Integer> identificacion = new HashSet<Integer>();
 
+	private int nacimientos=0; 
+	private int muertos=0; 
+	
+	public int getNacimientos() {
+		return nacimientos;
+	}
+	
+	public int getMuertos() {
+		return muertos;
+	}
+	
+	public HashSet<Integer> getIdentificacion() {
+		return identificacion;
+	}
+
+
+	public Comparator<Ser> getComparador() {
+		return comparador;
+	}
+
+	public Comparator<Ser> getComparadorNV() {
+		return comparadorNV;
+	}
+
 	public Censo() {
 		super();
 		for (int i = 0; i < 50;) {
@@ -39,6 +63,7 @@ public class Censo {
 				i++;
 			}
 		}
+		organizarColeccionciones();
 	}
 
 	private Comparator<Ser> comparador = new Comparator<Ser>() {
@@ -58,7 +83,7 @@ public class Censo {
 		}
 	};
 
-	public Queue<Ser> getDemandantes() {
+	public LinkedList<Ser> getDemandantes() {
 		return demandantes;
 	}
 
@@ -81,8 +106,16 @@ public class Censo {
 // recibes dos parametros nuevos produccion y demanda
 // for lo recorres tantas veces como (demanda-produccion)/1000
 	public void nacimiento(float demanda, float produccion) {
-		Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
-		poblacion.add(menor);
+		int CuantiaNacimientos=(int) ((demanda-produccion)/1000);
+		if (CuantiaNacimientos<0) {
+			nacimientos=0;
+		}else {
+			nacimientos=CuantiaNacimientos;
+		}
+		for (int i = 0; i < nacimientos; i++) {
+			Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+			poblacion.add(menor);			
+		}
 	}
 
 	public ArrayList<Ser> morir() {
@@ -95,6 +128,7 @@ public class Censo {
 				}
 				iterator.remove();
 				demandantes.remove(ser);
+				muertos++;
 			}
 		}
 		return trabajadoresMuertos;

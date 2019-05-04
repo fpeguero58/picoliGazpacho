@@ -1,6 +1,8 @@
 package modelo.vista;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -54,7 +56,7 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void altaTrabajador(PriorityQueue<Ser> demandantes, Stack<Factorias> industrias) {
+	public void altaTrabajador(LinkedList<Ser> demandantes) {
 		boolean creacion = true;
 
 		for (Factorias i : industrias) {
@@ -68,7 +70,7 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void bajaTrabajador(PriorityQueue<Ser> demandantes, Stack<Factorias> industrias) {
+	public void bajaTrabajador(LinkedList<Ser> demandantes, Stack<Factorias> industrias) {
 		demandantes.add(industrias.peek().despedirTrabajador());
 	}
 
@@ -101,4 +103,56 @@ public class MinisterioIndustria {
 			}
 		}
 	}
+
+	public void contratarDemandantes(LinkedList<Ser> demandantes) {
+		float produccion = calcularProduccionTotal(industrias);
+		int numeroTrabajadoresNecesarios = 0;
+
+		if (produccion < demanda) {
+			numeroTrabajadoresNecesarios = (int) ((demanda - produccion) / 1000);
+			for (int i = 0; i < numeroTrabajadoresNecesarios; i++) {
+				altaTrabajador(demandantes);
+			}
+		}
+	}
+
+	public void pagarSueldos() {
+
+		for (Factorias i : industrias) {
+			Stack<Ser> trabajadores = i.getTrabajadores();
+			for (Ser s : trabajadores) {
+				s.setAhorros(s.getAhorros() + 730);
+			}
+		}
+	}
+
+	public void bajaTrabajador(PriorityQueue<Ser> demandantes, Stack<Factorias> industrias) {
+		demandantes.add(industrias.peek().despedirTrabajador());
+	}
+
+	public void eliminaIndustrias(Stack<Factorias> industrias) {
+		int numeroPlazasDisponibles = 0;
+		LinkedList<Ser> trabajadoresDisponibles = new LinkedList();
+		Stack<Factorias> factoriasConPuestosLibres = new Stack<Factorias>();
+		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
+			Factorias factorias = (Factorias) iterator.next();
+			numeroPlazasDisponibles += MAX_TRABAJADORES - factorias.getNumeroTrabajadores();
+			if (factorias.getNumeroTrabajadores() <= numeroPlazasDisponibles) {
+				trabajadoresDisponibles.addAll(factorias.getTrabajadores());
+				for (int j = 0; j <= numeroPlazasDisponibles / 1000; j++) {
+					for (int i = 0; factoriasConPuestosLibres.size() < MAX_TRABAJADORES
+							&& !trabajadoresDisponibles.isEmpty(); i++) {
+						factoriasConPuestosLibres.get(j).getTrabajadores().add(trabajadoresDisponibles.pop());
+					}
+					
+				}
+				industrias.remove(factorias);
+				
+			} else {
+				factoriasConPuestosLibres.add(factorias);
+			}
+		}
+		
+	}
 }
+
