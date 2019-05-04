@@ -1,21 +1,46 @@
 package modelo.vista;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-
 
 public class Censo {
 	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
 	private LinkedList<Ser> demandantes = new LinkedList<Ser>();
 	private HashSet<Integer> identificacion = new HashSet<Integer>();
-	
-	
-	
+
+	public Censo() {
+		super();
+		for (int i = 0; i < 50;) {
+			Ser ser = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+			ser.setEdad((int) (Math.random() * (18)));
+			if (ser.getEdad()<ser.getEsperanzaVida()) {
+				poblacion.add(ser);
+				i++;
+			}
+		}
+		for (int i = 0; i < 100;) {
+			Ser ser = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+			ser.setEdad((int) (Math.random() * (65 - 18) + 18));
+			if (ser.getEdad()<ser.getEsperanzaVida()) {
+				poblacion.add(ser);
+				i++;
+			}
+		}
+		for (int i = 0; i < 30;) {
+			Ser ser = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+			ser.setEdad((int) (Math.random() * (90 - 65) + 65));
+			if (ser.getEdad()<ser.getEsperanzaVida()) {
+				poblacion.add(ser);
+				i++;
+			}
+		}
+	}
+
 	private Comparator<Ser> comparador = new Comparator<Ser>() {
 		@Override
 		public int compare(Ser o1, Ser o2) {
@@ -25,18 +50,18 @@ public class Censo {
 	private Comparator<Ser> comparadorNV = new Comparator<Ser>() {
 
 		@Override
-		
+
 		public int compare(Ser o1, Ser o2) {
-			double cosa=o1.getAhorros()*100000;
-			double cosaDos=o2.getAhorros()*100000;
-			return (int)cosa-(int)(cosaDos);
+			double cosa = o1.getAhorros() * 100000;
+			double cosaDos = o2.getAhorros() * 100000;
+			return (int) cosa - (int) (cosaDos);
 		}
 	};
 
 	public Queue<Ser> getDemandantes() {
 		return demandantes;
 	}
-	
+
 	public void organizarColeccionciones() {
 		Collections.sort(poblacion, comparador);
 		Collections.sort(demandantes, comparadorNV);
@@ -53,20 +78,22 @@ public class Censo {
 	public void setPoblacion(ArrayList<Ser> poblacion) {
 		this.poblacion = poblacion;
 	}
-
-	public void nacimiento() {
+// recibes dos parametros nuevos produccion y demanda
+// for lo recorres tantas veces como (demanda-produccion)/1000
+	public void nacimiento(float demanda, float produccion) {
 		Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
 		poblacion.add(menor);
 	}
 
 	public ArrayList<Ser> morir() {
 		ArrayList<Ser> trabajadoresMuertos = new ArrayList<>();
-		for (Ser ser : poblacion) {
+		for (Iterator<Ser> iterator = poblacion.iterator(); iterator.hasNext();) {
+			Ser ser = (Ser) iterator.next();
 			if (ser.getEdad() > ser.getEsperanzaVida()) {
-				if (demandantes.contains(ser) && ser.getEdad() > 17 && ser.getEdad() < 65) {
+				if (!demandantes.contains(ser) && ser.getEdad() > 17 && ser.getEdad() < 65) {
 					trabajadoresMuertos.add(ser);
 				}
-				poblacion.remove(ser);
+				iterator.remove();
 				demandantes.remove(ser);
 			}
 		}
@@ -77,7 +104,6 @@ public class Censo {
 		int indice;
 		do {
 			indice = (int) (Math.random() * 9999999);
-			System.out.println(indice);
 		} while (!identificacion.add(indice));
 		return indice;
 	}
