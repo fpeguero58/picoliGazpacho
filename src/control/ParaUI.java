@@ -14,9 +14,9 @@ import vista.UI;
 public class ParaUI extends UI {
 
 	Estado estado = new Estado();
-	DatosEstadoGlobal datosEstadoGlobal = new DatosEstadoGlobal(estado.getIndustrias().getDemanda(), estado.getIndustrias().calcularProduccionTotal(industrias), estado.getFinanzas().getFondosEstado(), crecimientoAnual);	
-	DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(estado.getIndustrias().getIndustrias().size(), estado.getIndustrias().calcularOcupacionTotal(industrias));
-	DatosPoblacion datosPoblacion = new DatosPoblacion(estado.getPoblacion().getPoblacion().size(), estado.menores(), estado.trabajadores(), estado.jubilados(), estado.nacimientos(), estado.muerto(), estado.jubilaciones(), nuevosTrabajadores);
+	DatosEstadoGlobal datosEstadoGlobal = new DatosEstadoGlobal(estado.getIndustrias().getDemanda(), estado.getIndustrias().calcularProduccionTotal(), estado.getFinanzas().getFondosEstado(), crecimientoAnual);	
+	DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(estado.getIndustrias().getIndustrias().size(), estado.getIndustrias().calcularOcupacionTotal());
+	DatosPoblacion datosPoblacion = new DatosPoblacion(estado.getPoblacion().getPoblacion().size(), estado.getPoblacion().numeroMenores(), estado.getPoblacion().numeroJubilados(), estado.getPoblacion().numeroJubilados(), estado.getPoblacion().getNacimientos(), estado.getPoblacion().getMuertos(), estado.getIndustrias().jubilarTrabajadores(), estado.getIndustrias().contratarDemandantes(estado.getPoblacion().getDemandantes()));
 	public ParaUI() {
 		getBtnIncrementarPorcentajeProduccion().addActionListener(new ActionListener() {
 
