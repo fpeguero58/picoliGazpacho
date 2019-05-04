@@ -64,5 +64,18 @@ public class Estado {
     	}
 		return total-poblacion.getDemandantes().size();
 	}
+	public MinisterioEconomia getFinanzas() {
+		return finanzas;
+	}
+	public MinisterioIndustria getIndustrias() {
+		return industrias;
+	}
+	public MinisterioTiempo getControlTiempo() {
+		return controlTiempo;
+	}
+	public Censo getPoblacion() {
+		return poblacion;
+	}
+    
 
 }
