@@ -48,7 +48,7 @@ public class MinisterioEconomia {
 
 	private void pagarSubvencionesJubilados(ArrayList<Ser> poblacion) {
 		for(Ser p: poblacion) {
-			if(fondosEstado>=NV_GENERAL/2 && p.getEdad()>=65 && p.getAhorros()==0) {
+			if(fondosEstado>=NV_GENERAL/2 && p.getEdad()>=65 && p.getAhorros()<NV_GENERAL/2) {
 				p.setAhorros(NV_GENERAL/2);
 				fondosEstado-=NV_GENERAL/2;			
 				}

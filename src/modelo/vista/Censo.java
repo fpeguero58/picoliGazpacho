@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Censo {
 	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
@@ -61,7 +62,7 @@ public class Censo {
 	    	int total=0;
 	    	for (int i = 0; i < poblacion.size(); i++) {
 				if (poblacion.get(i).getEdad()>17 && poblacion.get(i).getEdad()<65) {
-					if (demandantes.contains(poblacion.get(i))) {
+					if (!demandantes.contains(poblacion.get(i))) {
 						total++;
 					}
 				}
@@ -137,6 +138,13 @@ public class Censo {
 	public void setPoblacion(ArrayList<Ser> poblacion) {
 		this.poblacion = poblacion;
 	}
+	public void actualizarDemandantes(Stack <Ser> trabajadores) {
+		for (Ser ser : poblacion) {
+			if (ser.getEdad()>17&&!trabajadores.contains(ser)) {
+				demandantes.add(ser);
+			}
+		}
+	}
 // recibes dos parametros nuevos produccion y demanda
 // for lo recorres tantas veces como (demanda-produccion)/1000
 	public void nacimiento(float demanda, float produccion) {
@@ -146,7 +154,6 @@ public class Censo {
 		}else {
 			nacimientos=CuantiaNacimientos;
 		}
-		System.out.println("la cuantia es: "+CuantiaNacimientos);
 		for (int i = 0; i < nacimientos; i++) {
 			Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
 			menor.setEsperanzaVida(365);
@@ -167,7 +174,6 @@ public class Censo {
 				jubilados++;
 			}
 		}
-		System.out.println(jubilados);
 	}
 
 	public ArrayList<Ser> morir() {
