@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import org.ietf.jgss.Oid;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 class CensoTest {
 
-	@Test
+	@Ignore
 	void testMorir() {
 	Ser t1=new Ser("pepe", 1234, 55);
 	t1.setEdad(56);
@@ -36,7 +37,32 @@ class CensoTest {
 			posFinal=i;
 		}
 	}
-	System.out.println(posFinal);
+	Ser[] seres=new Ser[5];
+	for (int i = 0; i < 5; i++) {
+		Ser ser =new Ser("PACO "+i, i, 67+i);
+		seres[i]=ser;
+		ser.setAhorros(460);
+		ser.setNecesidadVital(365);
+		censo.getPoblacion().add(ser);
+	}
+	System.out.println("antes de los cambios");
+	for (int i = 0; i < seres.length; i++) {
+		System.out.println("esperanza de vida: "+seres[i].getEsperanzaVida());
+		System.out.println("ahorros: "+seres[i].getAhorros());
+	}
+	censo.reducirEV();
+	System.out.println("despues de los cambios");
+	for (int i = 0; i < seres.length; i++) {
+		System.out.println("esperanza de vida: "+seres[i].getEsperanzaVida());
+		System.out.println("ahorros: "+seres[i].getAhorros());
+	}
+
+	System.out.println("????????????????");
+	System.out.println(censo.numeroTrabajadores());
+	System.out.println(censo.numeroJubilados());
+	Censo cesi=new Censo();
+	System.out.println(cesi.getPoblacion().size());
+//	System.out.println(posFinal);
 	
 	}
 	@Test
@@ -62,8 +88,64 @@ class CensoTest {
 		mI.getIndustrias().add(f1);
 		assertTrue(mI.getIndustrias().get(1).getTrabajadores().containsAll(s));
 		mI.eliminarTrabajadoresMuertos(s);
-		System.out.println(mI.getIndustrias().get(1).getTrabajadores().containsAll(s));
+//		System.out.println(mI.getIndustrias().get(1).getTrabajadores().containsAll(s));
 		assertFalse(mI.getIndustrias().get(1).getTrabajadores().containsAll(s));
-	
+		//eliminar Industrias
+		
+		//elementos
+		
+		Factorias fE1=new Factorias(1);
+		Factorias fE2=new Factorias(2);
+		Factorias fE3=new Factorias(3);
+		ArrayList<Factorias> facArrayList=new ArrayList<Factorias>();
+		
+		Factorias[] listaFactorias= {fE1,fE2,fE3};
+		for (int i = 0; i < 400; i++) {
+			Ser ser=new Ser("paco", i, 67);
+			fE1.contratarTrabajador(ser);
+		}
+		for (int i = 0; i < 400; i++) {
+			Ser ser=new Ser("juanjo", i, 67);
+			fE2.contratarTrabajador(ser);
+		}
+		for (int i = 0; i < 400; i++) {
+			Ser ser=new Ser("jesus", i, 67);
+			fE3.contratarTrabajador(ser);
+		}
+		mI.getIndustrias().clear();
+		for (int i = 0; i < listaFactorias.length; i++) {
+			mI.getIndustrias().add(listaFactorias[i]);
+			facArrayList.add(listaFactorias[i]);
+		}
+//		System.out.println(mI.getIndustrias().size());
+		System.out.println("<=============================>");
+		System.out.println();
+//		System.out.println(fE1.getTrabajadores().size(
+		assertTrue(mI.getIndustrias().containsAll(facArrayList));
+		mI.eliminaIndustrias();
+		assertFalse(mI.getIndustrias().containsAll(facArrayList));
+		mI.pagarSueldos();
+		Censo censo=new Censo();
+		System.out.println(censo.numeroMenores());
+		//		System.out.println(mI.getIndustrias().size());
+		Estado estado =new Estado();
+//		System.out.println(estado.getPoblacion().numeroTrabajadores());
+			estado.getPoblacion().getPoblacion().size();
+			System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+			for (Factorias factorias : estado.getIndustrias().getIndustrias()) {
+				System.out.println(factorias.getNumeroTrabajadores());
+			}
+			estado.play();
+			System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+			for (Factorias factorias : estado.getIndustrias().getIndustrias()) {
+				System.out.println(factorias.getNumeroTrabajadores());
+			}
+//		System.out.println(estado.getIndustrias().getDemanda());
+//		estado.getIndustrias().aumentarDemanda();
+//		System.out.println(estado.getIndustrias().getDemanda());
+
+//		for (Ser ser : estado.getPoblacion().getPoblacion()) {
+//			System.out.println(ser.getNombre());
+//		}
 	}
 }

@@ -18,6 +18,7 @@ public class Ser {
 		this.esperanzaVida = esperanzaVida;
 		this.edad = 0;
 		this.ahorros=0f;
+		this.esperanzaVida=365;
 	}
 
 	public float getEsperanzaVida() {
