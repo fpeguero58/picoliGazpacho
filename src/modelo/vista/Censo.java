@@ -12,7 +12,6 @@ public class Censo {
 	private ArrayList<Ser> poblacion = new ArrayList<Ser>();
 	private LinkedList<Ser> demandantes = new LinkedList<Ser>();
 	private HashSet<Integer> identificacion = new HashSet<Integer>();
-
 	private int nacimientos=0; 
 	private int muertos=0; 
 	
@@ -36,6 +35,33 @@ public class Censo {
 	public Comparator<Ser> getComparadorNV() {
 		return comparadorNV;
 	}
+	 public int numeroJubilados() {
+	    	int posInicial=0;
+	    	for (int i = 0; i < poblacion.size(); i++) {
+				if (poblacion.get(i).getEdad()<65) {
+					posInicial=i;
+				}
+	    	}
+			return poblacion.size()-posInicial;
+		}
+	 public int numeroMenores() {
+	    	int posInicial=0;
+	    	for (int i = 0; i < poblacion.size(); i++) {
+				if (poblacion.get(i).getEdad()<18) {
+					posInicial=i;
+				}
+	    	}
+			return posInicial;
+		}
+	  public int numeroTrabajadores() {
+	    	int total=0;
+	    	for (int i = 0; i < poblacion.size(); i++) {
+				if (poblacion.get(i).getEdad()>17 && poblacion.get(i).getEdad()<65) {
+					total++;
+				}
+	    	}
+			return total-poblacion.size();
+		}
 
 	public Censo() {
 		super();
@@ -52,6 +78,7 @@ public class Censo {
 			ser.setEdad((int) (Math.random() * (65 - 18) + 18));
 			if (ser.getEdad()<ser.getEsperanzaVida()) {
 				poblacion.add(ser);
+				demandantes.add(ser);
 				i++;
 			}
 		}

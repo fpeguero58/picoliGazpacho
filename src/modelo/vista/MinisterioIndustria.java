@@ -11,7 +11,7 @@ public class MinisterioIndustria {
 	private float demanda;
 	private final int MIN_TRABAJADORES = 300;
 	private final int MAX_TRABAJADORES = 1000;
-
+	
 	public MinisterioIndustria() {
 		this.demanda = 96725;
 		industrias.add(new Factorias(0));
@@ -41,7 +41,7 @@ public class MinisterioIndustria {
 		demanda -= demanda / 10;
 	}
 
-	public void reorganizarIndustrias(Stack<Factorias> industrias) {
+	public void reorganizarIndustrias() {
 		for (Factorias i : industrias) {
 			if (i.getNumeroTrabajadores() < MIN_TRABAJADORES) {
 				for (Factorias m : industrias) {
@@ -55,7 +55,24 @@ public class MinisterioIndustria {
 			}
 		}
 	}
-
+	
+	/*public int jubilarTrabajadores(){
+		int jubilaciones=0;
+		ArrayList<Ser> jubilados = new ArrayList<>();
+		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
+            Factorias factorias = (Factorias) iterator.next();
+			for (Ser ser : factorias.getTrabajadores()) {
+				if(ser.getEdad()>64) {
+					jubilados.add(ser);
+					jubilaciones++; //lo acabo de poner yo (jesus)
+			}
+				factorias.getTrabajadores().removeAll(jubilados);
+				}
+			}
+		return jubilaciones;
+		}
+	
+*/
 	public void altaTrabajador(LinkedList<Ser> demandantes) {
 		boolean creacion = true;
 
@@ -70,11 +87,11 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void bajaTrabajador(LinkedList<Ser> demandantes, Stack<Factorias> industrias) {
+	public void bajaTrabajador(LinkedList<Ser> demandantes) {
 		demandantes.add(industrias.peek().despedirTrabajador());
 	}
 
-	public float calcularOcupacionTotal(Stack<Factorias> industrias) {
+	public float calcularOcupacionTotal() {
 		float porcentajeOcupacion = 0;
 		int numeroIndustrias = industrias.size();
 
@@ -85,7 +102,7 @@ public class MinisterioIndustria {
 		return porcentajeOcupacion / numeroIndustrias;
 	}
 
-	public float calcularProduccionTotal(Stack<Factorias> industrias) {
+	public float calcularProduccionTotal() {
 		float produccion = 0;
 
 		for (Factorias i : industrias) {
@@ -104,8 +121,8 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void contratarDemandantes(LinkedList<Ser> demandantes) {
-		float produccion = calcularProduccionTotal(industrias);
+	public int contratarDemandantes(LinkedList<Ser> demandantes) {
+		float produccion = calcularProduccionTotal();
 		int numeroTrabajadoresNecesarios = 0;
 
 		if (produccion < demanda) {
@@ -114,25 +131,27 @@ public class MinisterioIndustria {
 				altaTrabajador(demandantes);
 			}
 		}
+		return numeroTrabajadoresNecesarios;
 	}
 
 	public void pagarSueldos() {
 
-		for (Factorias i : industrias) {
-			Stack<Ser> trabajadores = i.getTrabajadores();
-			for (Ser s : trabajadores) {
-				s.setAhorros(s.getAhorros() + 730);
+		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
+			Factorias factorias = (Factorias) iterator.next();
+			
+			for (Ser s : factorias.getTrabajadores()) {
+				s.setAhorros(s.getAhorros() + 730f);
 			}
 		}
 	}
 
-	public void bajaTrabajador(PriorityQueue<Ser> demandantes, Stack<Factorias> industrias) {
+	public void bajaTrabajador(PriorityQueue<Ser> demandantes) {
 		demandantes.add(industrias.peek().despedirTrabajador());
 	}
 
-	public void eliminaIndustrias(Stack<Factorias> industrias) {
+	public void eliminaIndustrias() {
 		int numeroPlazasDisponibles = 0;
-		LinkedList<Ser> trabajadoresDisponibles = new LinkedList();
+		LinkedList<Ser> trabajadoresDisponibles = new LinkedList<Ser>();
 		Stack<Factorias> factoriasConPuestosLibres = new Stack<Factorias>();
 		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
 			Factorias factorias = (Factorias) iterator.next();
@@ -154,5 +173,6 @@ public class MinisterioIndustria {
 		}
 		
 	}
+
 }
 
