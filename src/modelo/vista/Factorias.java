@@ -8,8 +8,7 @@ public class Factorias {
 	private Stack<Ser> trabajadores = new Stack<Ser>();
 
 	public Factorias(int idFactoria) {
-		super();
-		this.setIdFactoria(idFactoria);
+		this.idFactoria=idFactoria;
 	}
 
 	public int getNumeroTrabajadores() {
