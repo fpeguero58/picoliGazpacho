@@ -1,20 +1,41 @@
 package modelo.vista;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Estado {
 	private MinisterioEconomia finanzas = new MinisterioEconomia();
 	private MinisterioIndustria industrias = new MinisterioIndustria();
 	private MinisterioTiempo controlTiempo = new MinisterioTiempo();
 	private Censo poblacion = new Censo();
+	
+	public Estado() {
+		
+	}
 
 	public void play() {
-		poblacion.morir();
-		industrias.jubilarTrabajadores();
+//		industrias.jubilarTrabajadores();
 		industrias.contratarDemandantes(poblacion.getDemandantes());
-		controlTiempo.realizarCiclo(poblacion.getPoblacion());
-		industrias.pagarSueldos();
+		finanzas.pagarSubvenciones(poblacion.getDemandantes(), poblacion.getPoblacion());
+		
+		for(Factorias i: industrias.getIndustrias()) {
+			finanzas.cobrarImpuestos(i.getTrabajadores());
+		}
 
+		industrias.reorganizarIndustrias();
+		industrias.eliminaIndustrias();
+		poblacion.jubiladosNuevos();
+		industrias.eliminaIndustrias();
+		poblacion.nacimiento(industrias.getDemanda(), industrias.calcularProduccionTotal());
+		controlTiempo.realizarCiclo(poblacion.getPoblacion());
+		Stack<Ser> trabajadores= new Stack<>();
+		for (Factorias factoria : industrias.getIndustrias()) {
+			trabajadores.addAll(factoria.getTrabajadores());
+		}
+		poblacion.actualizarDemandantes(trabajadores);
+		poblacion.organizarColeccionciones();
+		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
+		industrias.pagarSueldos();
 	}
 
 	public MinisterioEconomia getFinanzas() {
