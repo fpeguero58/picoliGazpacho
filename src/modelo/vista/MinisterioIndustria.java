@@ -139,7 +139,7 @@ public class MinisterioIndustria {
 			Factorias factorias = (Factorias) iterator.next();
 			
 			for (Ser s : factorias.getTrabajadores()) {
-				s.setAhorros(s.getAhorros() + 730f);
+				s.setSueldo(730f);
 			}
 		}
 	}
