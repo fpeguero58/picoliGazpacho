@@ -23,7 +23,9 @@ public class MinisterioEconomia {
 	public void cobrarImpuestos(Stack <Ser> trabajadores) {
 		for(Ser m: trabajadores) {
 			fondosEstado+=m.getSueldo()/4;
-			m.setSueldo(m.getSueldo()/4);
+			m.setSueldo(m.getSueldo()-m.getSueldo()/4);
+			m.setAhorros(m.getAhorros()+m.getSueldo());
+			m.setSueldo(0f);
 		}
 	}
 	
