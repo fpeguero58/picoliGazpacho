@@ -78,6 +78,7 @@ public class Censo {
 			ser.setEdad((int) (Math.random() * (65 - 18) + 18));
 			if (ser.getEdad()<ser.getEsperanzaVida()) {
 				poblacion.add(ser);
+				demandantes.add(ser);
 				i++;
 			}
 		}

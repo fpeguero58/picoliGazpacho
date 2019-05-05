@@ -7,14 +7,27 @@ public class Estado {
 	private MinisterioIndustria industrias = new MinisterioIndustria();
 	private MinisterioTiempo controlTiempo = new MinisterioTiempo();
 	private Censo poblacion = new Censo();
+	
+	public Estado() {
+		
+	}
 
 	public void play() {
-		poblacion.morir();
-		industrias.jubilarTrabajadores();
-		industrias.contratarDemandantes(poblacion.getDemandantes());
+		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
+//		industrias.jubilarTrabajadores();
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
+		industrias.contratarDemandantes(poblacion.getDemandantes());
+		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
 		industrias.pagarSueldos();
+		finanzas.pagarSubvenciones(poblacion.getDemandantes(), poblacion.getPoblacion());
+		
+		for(Factorias i: industrias.getIndustrias()) {
+			finanzas.cobrarImpuestos(i.getTrabajadores());
+		}
 
+		industrias.reorganizarIndustrias();
+		industrias.eliminaIndustrias();
+		poblacion.organizarColeccionciones();
 	}
 
 	public MinisterioEconomia getFinanzas() {
