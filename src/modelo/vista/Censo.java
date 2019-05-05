@@ -156,7 +156,6 @@ public class Censo {
 		}
 		for (int i = 0; i < nacimientos; i++) {
 			Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
-			menor.setEsperanzaVida(365);
 			poblacion.add(menor);			
 		}
 	}

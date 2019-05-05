@@ -26,6 +26,7 @@ public class Estado {
 		industrias.eliminaIndustrias();
 		poblacion.jubiladosNuevos();
 		industrias.eliminaIndustrias();
+		industrias.despedirTrabajadores(poblacion.getDemandantes());
 		poblacion.nacimiento(industrias.getDemanda(), industrias.calcularProduccionTotal());
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
 		Stack<Ser> trabajadores= new Stack<>();

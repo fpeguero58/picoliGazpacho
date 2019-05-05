@@ -9,10 +9,15 @@ import java.util.Stack;
 public class MinisterioIndustria {
 	private Stack<Factorias> industrias = new Stack<Factorias>();
 	private float demanda;
-	private int produccion;
+	private float produccion;
 	private final int MIN_TRABAJADORES = 300;
 	private final int MAX_TRABAJADORES = 1000;
 	int numeroTrabajadoresNecesarios=0;
+	
+	public float getProduccion() {
+		return produccion;
+	}
+	
 	public int getNumeroTrabajadoresNecesarios() {
 		return numeroTrabajadoresNecesarios;
 	}
@@ -85,10 +90,6 @@ public class MinisterioIndustria {
 		}
 	}
 
-	public void bajaTrabajador(LinkedList<Ser> demandantes) {
-		demandantes.add(industrias.peek().despedirTrabajador());
-	}
-
 	public float calcularOcupacionTotal() {
 		float porcentajeOcupacion = 0;
 		int numeroIndustrias = industrias.size();
@@ -101,10 +102,9 @@ public class MinisterioIndustria {
 	}
 
 	public float calcularProduccionTotal() {
-		float produccion = 0;
 
 		for (Factorias i : industrias) {
-			produccion += i.getNumeroTrabajadores() * MAX_TRABAJADORES;
+			produccion = i.getNumeroTrabajadores() * MAX_TRABAJADORES;
 		}
 		return produccion;
 	}
@@ -143,8 +143,19 @@ public class MinisterioIndustria {
 			}
 		}
 	}
+	
+	public void despedirTrabajadores(LinkedList<Ser> demandantes) {
+		float diferenciaDemandaProduccion=produccion-demanda;
+		int numeroDespidos=0;
+		if(diferenciaDemandaProduccion>0) {
+			numeroDespidos=(int) (diferenciaDemandaProduccion/1000)+1;
+			for(int i=0; i<numeroDespidos; i++) {
+				bajaTrabajador(demandantes);
+			}
+		}
+	}
 
-	public void bajaTrabajador(PriorityQueue<Ser> demandantes) {
+	public void bajaTrabajador(LinkedList<Ser> demandantes) {
 		demandantes.add(industrias.peek().despedirTrabajador());
 	}
 
