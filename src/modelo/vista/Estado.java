@@ -1,6 +1,7 @@
 package modelo.vista;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Estado {
 	private MinisterioEconomia finanzas = new MinisterioEconomia();
@@ -26,8 +27,12 @@ public class Estado {
 		poblacion.jubiladosNuevos();
 		industrias.eliminaIndustrias();
 		poblacion.nacimiento(industrias.getDemanda(), industrias.calcularProduccionTotal());
-		System.out.println(poblacion.getPoblacion().size());
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
+		Stack<Ser> trabajadores= new Stack<>();
+		for (Factorias factoria : industrias.getIndustrias()) {
+			trabajadores.addAll(factoria.getTrabajadores());
+		}
+		poblacion.actualizarDemandantes(trabajadores);
 		poblacion.organizarColeccionciones();
 		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
 		industrias.pagarSueldos();

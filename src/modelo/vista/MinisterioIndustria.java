@@ -154,7 +154,7 @@ public class MinisterioIndustria {
 		int numeroPlazasDisponibles = 0;
 		int contadorFactorias = 0;
 		Stack<Ser> trabajadoresRehubicados = new Stack<Ser>();
-		for (Iterator iterator = industrias.iterator(); iterator.hasNext();) {
+		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
 			Factorias factorias = (Factorias) iterator.next();
 			numeroPlazasDisponibles += MAX_TRABAJADORES - factorias.getTrabajadores().size();
 			if (contadorFactorias > 0) {
@@ -173,7 +173,7 @@ public class MinisterioIndustria {
 			contadorFactorias++;
 		}
 
-		for (Iterator iterator = industrias.iterator(); iterator.hasNext();) {
+		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
 			Factorias factoria = (Factorias) iterator.next();
 			if (factoria.getTrabajadores().isEmpty()) {
 				iterator.remove();
