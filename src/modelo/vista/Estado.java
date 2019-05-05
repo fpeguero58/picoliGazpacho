@@ -13,12 +13,8 @@ public class Estado {
 	}
 
 	public void play() {
-		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
 //		industrias.jubilarTrabajadores();
-		controlTiempo.realizarCiclo(poblacion.getPoblacion());
 		industrias.contratarDemandantes(poblacion.getDemandantes());
-		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
-		industrias.pagarSueldos();
 		finanzas.pagarSubvenciones(poblacion.getDemandantes(), poblacion.getPoblacion());
 		
 		for(Factorias i: industrias.getIndustrias()) {
@@ -27,7 +23,14 @@ public class Estado {
 
 		industrias.reorganizarIndustrias();
 		industrias.eliminaIndustrias();
+		poblacion.jubiladosNuevos();
+		industrias.eliminaIndustrias();
+		poblacion.nacimiento(industrias.getDemanda(), industrias.calcularProduccionTotal());
+		System.out.println(poblacion.getPoblacion().size());
+		controlTiempo.realizarCiclo(poblacion.getPoblacion());
 		poblacion.organizarColeccionciones();
+		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
+		industrias.pagarSueldos();
 	}
 
 	public MinisterioEconomia getFinanzas() {

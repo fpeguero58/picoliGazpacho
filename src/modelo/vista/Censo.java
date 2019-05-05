@@ -14,9 +14,13 @@ public class Censo {
 	private HashSet<Integer> identificacion = new HashSet<Integer>();
 	private int nacimientos=0; 
 	private int muertos=0; 
+	private int jubilados=0;
 	
 	public int getNacimientos() {
 		return nacimientos;
+	}
+	public int getJubiladosNuevos() {
+		return jubilados;
 	}
 	
 	public int getMuertos() {
@@ -42,7 +46,7 @@ public class Censo {
 					posInicial=i;
 				}
 	    	}
-			return poblacion.size()-posInicial;
+			return poblacion.size()-posInicial-1;
 		}
 	 public int numeroMenores() {
 	    	int posInicial=0;
@@ -51,16 +55,18 @@ public class Censo {
 					posInicial=i;
 				}
 	    	}
-			return posInicial;
+			return posInicial+1;
 		}
 	  public int numeroTrabajadores() {
 	    	int total=0;
 	    	for (int i = 0; i < poblacion.size(); i++) {
 				if (poblacion.get(i).getEdad()>17 && poblacion.get(i).getEdad()<65) {
-					total++;
+					if (demandantes.contains(poblacion.get(i))) {
+						total++;
+					}
 				}
 	    	}
-			return total-poblacion.size();
+			return total;
 		}
 
 	public Censo() {
@@ -86,6 +92,7 @@ public class Censo {
 			Ser ser = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
 			ser.setEdad((int) (Math.random() * (90 - 65) + 65));
 			if (ser.getEdad()<ser.getEsperanzaVida()) {
+				ser.setEsperanzaVida(365/2);
 				poblacion.add(ser);
 				i++;
 			}
@@ -139,10 +146,28 @@ public class Censo {
 		}else {
 			nacimientos=CuantiaNacimientos;
 		}
+		System.out.println("la cuantia es: "+CuantiaNacimientos);
 		for (int i = 0; i < nacimientos; i++) {
 			Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
+			menor.setEsperanzaVida(365);
 			poblacion.add(menor);			
 		}
+	}
+	public void jubilarSer() {
+		for (Ser ser : poblacion) {
+			if (ser.getEdad()>=65) {
+				ser.setNecesidadVital(365f/2f);
+			}
+		}
+	}
+	public void jubiladosNuevos() {
+		jubilados=0;
+		for (Ser ser : poblacion) {
+			if (ser.getEdad()==65) {
+				jubilados++;
+			}
+		}
+		System.out.println(jubilados);
 	}
 
 	public ArrayList<Ser> morir() {
@@ -180,15 +205,15 @@ public class Censo {
 	}
 
 	public void reducirEV() {
-		float reduccion;
+		float reduccion=0f;
 		for (Ser ser : poblacion) {
 			reduccion = (ser.getNecesidadVital() - ser.getAhorros()) / ser.getNecesidadVital();
 			if (reduccion > 0) {
 				if (reduccion >= 0.5) {
 					reduccion = 0.5f;
 				}
-				ser.setEsperanzaVida(ser.getEsperanzaVida() - reduccion);
 			}
+			ser.setEsperanzaVida(ser.getEsperanzaVida() - reduccion);
 		}
 	}
 
