@@ -132,7 +132,18 @@ public class MinisterioIndustria {
 			}
 		}
 	}
-
+	public void jubilarTrabajadores() {
+		for (Factorias factorias : industrias) {
+			if (factorias.getTrabajadores().isEmpty()) {
+				
+			for (Ser ser : factorias.getTrabajadores()) {
+				if (ser.getEdad()>=65) {
+					factorias.trabajadorMuerto(ser);
+				}
+			}
+			}
+		}
+	}
 	public void pagarSueldos() {
 
 		for (Iterator<Factorias> iterator = industrias.iterator(); iterator.hasNext();) {
