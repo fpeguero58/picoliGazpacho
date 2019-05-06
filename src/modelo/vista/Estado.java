@@ -8,6 +8,8 @@ public class Estado {
 	private MinisterioIndustria industrias = new MinisterioIndustria();
 	private MinisterioTiempo controlTiempo = new MinisterioTiempo();
 	private Censo poblacion = new Censo();
+	private float crecimientoAnual = 0f;
+	private float produccionAnterior = 0f;
 	
 	public Estado() {
 		contratarDespedir();
@@ -21,6 +23,13 @@ public class Estado {
 		industrias.eliminaIndustrias();
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
 
+	}
+	public float calcularCrecimientoAnual(){
+		 
+		float  produccionActual  = industrias.getProduccion();
+		crecimientoAnual = ((produccionActual - produccionAnterior)/produccionAnterior)*100;
+		produccionAnterior = produccionActual;
+		return crecimientoAnual;
 	}
 	private void contratarDespedir() {
 		industrias.jubilarTrabajadores();
