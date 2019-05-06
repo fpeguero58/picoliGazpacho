@@ -52,11 +52,11 @@ public class ParaUI extends UI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				estado.play();
-				DatosEstadoGlobal datosEstadoGlobal = new DatosEstadoGlobal(demanda, produccion, capitalEstatal,
-						crecimientoAnual);
-				DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(grandes, porcentajeGrandes);
-				DatosPoblacion datosPoblacion = new DatosPoblacion(habitantes, menores, trabajadores, jubilados,
-						nacimientos, fallecimientos, jubilaciones, nuevosTrabajadores);
+				DatosEstadoGlobal datosEstadoGlobal = new DatosEstadoGlobal(estado.getIndustrias().getDemanda(), estado.getIndustrias().getProduccion(), estado.getFinanzas().getFondosEstado(),
+						0);
+				DatosEstadoLocal datosEstadoLocal = new DatosEstadoLocal(estado.getIndustrias().getIndustrias().size(), estado.getIndustrias().calcularOcupacionTotal());
+				DatosPoblacion datosPoblacion = new DatosPoblacion(estado.getPoblacion().getPoblacion().size(), estado.getPoblacion().numeroMenores(), estado.getPoblacion().numeroTrabajadores(), estado.getPoblacion().numeroJubilados(),
+						estado.getPoblacion().getNacimientos(), estado.getPoblacion().getMuertos(), estado.getPoblacion().getJubiladosNuevos(), estado.getIndustrias().getNumeroTrabajadoresNecesarios());
 				setDatosEnElInterfazUsuario(datosPoblacion, datosEstadoLocal, datosEstadoGlobal);
 			}
 		});
