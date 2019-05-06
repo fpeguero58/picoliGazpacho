@@ -14,23 +14,6 @@ import vista.UI;
 public class ParaUI extends UI {
 
 	Estado estado = new Estado();
-	// GLOBAL
-	double demanda = estado.getIndustrias().getDemanda();
-	double produccion = estado.getIndustrias().getProduccion();
-	double capitalEstatal = estado.getFinanzas().getFondosEstado();
-	double crecimientoAnual = 0; // TODO;
-	// LOCAL
-	int grandes = estado.getIndustrias().getIndustrias().size();
-	float porcentajeGrandes = estado.getIndustrias().calcularOcupacionTotal();
-	// POBLACION
-	long habitantes = estado.getPoblacion().getPoblacion().size();
-	long menores = estado.getPoblacion().numeroMenores();
-	long trabajadores = estado.getPoblacion().numeroTrabajadores();
-	long jubilados = estado.getPoblacion().numeroJubilados();
-	long nacimientos = estado.getPoblacion().getNacimientos();
-	long fallecimientos = estado.getPoblacion().getMuertos();
-	long jubilaciones = estado.getPoblacion().getJubiladosNuevos();
-	long nuevosTrabajadores = estado.getIndustrias().getNumeroTrabajadoresNecesarios();
 
 	public ParaUI() {
 		getBtnIncrementarPorcentajeProduccion().addActionListener(new ActionListener() {
