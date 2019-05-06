@@ -138,7 +138,9 @@ class CensoTest {
 			Ser ser= new Ser("pes", i, 240);
 			demanLinkedLis.add(ser);
 		}
-
+		System.out.println(censo.numeroMenores());
+		censo.nacimiento(2000, 152);
+		System.out.println(censo.numeroMenores());
 		for (int i = 0; i < listaFactorias.length; i++) {
 			estado.play();
 			estado.getIndustrias().setDemanda(1002000);

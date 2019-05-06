@@ -31,7 +31,13 @@ public class Censo {
 	public HashSet<Integer> getIdentificacion() {
 		return identificacion;
 	}
-
+	
+	public int getPoblacionTotal(int numeroTrabajadores) {
+		int total=0;
+		
+		total+=numeroMenores()+numeroJubilados()+numeroTrabajadores;
+		return total;
+	}
 
 	public Comparator<Ser> getComparador() {
 		return comparador;
@@ -51,24 +57,14 @@ public class Censo {
 		}
 	 public int numeroMenores() {
 	    	int posInicial=0;
-	    	for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getEdad()<18) {
-					posInicial=i;
-				}
-	    	}
-			return posInicial+1;
+	    		for (Ser ser : poblacion) {
+	    			if(ser.getEdad()<18) {
+	    				posInicial++;
+	    			}
+	    		}
+	    	return posInicial;
 		}
-	  public int numeroTrabajadores() {
-	    	int total=0;
-	    	for (int i = 0; i < poblacion.size(); i++) {
-				if (poblacion.get(i).getEdad()>17 && poblacion.get(i).getEdad()<65) {
-					if (!demandantes.contains(poblacion.get(i))) {
-						total++;
-					}
-				}
-	    	}
-			return total;
-		}
+	 
 
 	public Censo() {
 		super();
@@ -138,6 +134,7 @@ public class Censo {
 	public void setPoblacion(ArrayList<Ser> poblacion) {
 		this.poblacion = poblacion;
 	}
+	
 	public void actualizarDemandantes(Stack <Ser> trabajadores) {
 		for (Ser ser : poblacion) {
 			if (ser.getEdad()>17&&!trabajadores.contains(ser)) {
@@ -145,6 +142,7 @@ public class Censo {
 			}
 		}
 	}
+	
 // recibes dos parametros nuevos produccion y demanda
 // for lo recorres tantas veces como (demanda-produccion)/1000
 	public void nacimiento(float demanda, float produccion) {
