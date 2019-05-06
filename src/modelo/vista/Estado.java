@@ -14,8 +14,11 @@ public class Estado {
 	}
 
 	public void play() {
-//		industrias.jubilarTrabajadores();
+		Stack<Ser> trabajadores= new Stack<>();
+		industrias.jubilarTrabajadores();
+		poblacion.actualizarDemandantes(trabajadores);
 		industrias.contratarDemandantes(poblacion.getDemandantes());
+		
 		finanzas.pagarSubvenciones(poblacion.getDemandantes(), poblacion.getPoblacion());
 		
 		for(Factorias i: industrias.getIndustrias()) {
@@ -29,7 +32,7 @@ public class Estado {
 		industrias.despedirTrabajadores(poblacion.getDemandantes());
 		poblacion.nacimiento(industrias.getDemanda(), industrias.calcularProduccionTotal());
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
-		Stack<Ser> trabajadores= new Stack<>();
+		
 		for (Factorias factoria : industrias.getIndustrias()) {
 			trabajadores.addAll(factoria.getTrabajadores());
 		}
@@ -37,6 +40,7 @@ public class Estado {
 		poblacion.organizarColeccionciones();
 		industrias.eliminarTrabajadoresMuertos(poblacion.morir());
 		industrias.pagarSueldos();
+		System.out.println(poblacion.numeroMenores());
 	}
 
 	public MinisterioEconomia getFinanzas() {

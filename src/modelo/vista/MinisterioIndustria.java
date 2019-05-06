@@ -21,6 +21,15 @@ public class MinisterioIndustria {
 	public int getNumeroTrabajadoresNecesarios() {
 		return numeroTrabajadoresNecesarios;
 	}
+	
+	public int totalTrabajadores() {
+		int total=0;
+		
+		for (Factorias factorias : industrias) {
+			total+=factorias.getNumeroTrabajadores();
+		}
+		return total;
+	}
 
 	public MinisterioIndustria() {
 		this.demanda = 96725;
