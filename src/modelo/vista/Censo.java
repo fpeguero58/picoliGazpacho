@@ -18,7 +18,9 @@ public class Censo {
 	private int jubilados=0;
 	
 	public int getNacimientos() {
-		return nacimientos;
+		int total=nacimientos;
+		nacimientos=0;
+		return total;
 	}
 	public int getJubiladosNuevos() {
 		return jubilados;
@@ -137,7 +139,7 @@ public class Censo {
 	
 	public void actualizarDemandantes(Stack <Ser> trabajadores) {
 		for (Ser ser : poblacion) {
-			if (ser.getEdad()>17&&!trabajadores.contains(ser)) {
+			if (ser.getEdad()>17&&!trabajadores.contains(ser)&&!demandantes.contains(ser)) {
 				demandantes.add(ser);
 			}
 		}
@@ -147,10 +149,10 @@ public class Censo {
 // for lo recorres tantas veces como (demanda-produccion)/1000
 	public void nacimiento(float demanda, float produccion) {
 		int CuantiaNacimientos=(int) ((demanda-produccion)/1000);
-		if (CuantiaNacimientos<0) {
+		if (nacimientos+CuantiaNacimientos<0) {
 			nacimientos=0;
 		}else {
-			nacimientos=CuantiaNacimientos;
+			nacimientos+=CuantiaNacimientos;
 		}
 		for (int i = 0; i < nacimientos; i++) {
 			Ser menor = new Ser(crearNombre(), CrearIdentificacion(), (int) (Math.random() * (90)));
@@ -159,15 +161,9 @@ public class Censo {
 	}
 	public void jubilarSer() {
 		for (Ser ser : poblacion) {
-			if (ser.getEdad()>=65) {
-				ser.setNecesidadVital(365f/2f);
-			}
-		}
-	}
-	public void jubiladosNuevos() {
-		jubilados=0;
-		for (Ser ser : poblacion) {
 			if (ser.getEdad()==65) {
+				ser.setNecesidadVital(365f/2f);
+				nacimientos++;
 				jubilados++;
 			}
 		}

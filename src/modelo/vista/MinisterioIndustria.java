@@ -95,7 +95,10 @@ public class MinisterioIndustria {
 			}
 		}
 		if (creacion) {
-			industrias.add(new Factorias(industrias.firstElement().getIdFactoria() + 1));
+			if (!industrias.isEmpty()) {
+				
+				industrias.add(new Factorias(industrias.firstElement().getIdFactoria() + 1));
+			}
 		}
 	}
 
@@ -170,7 +173,10 @@ public class MinisterioIndustria {
 		if(diferenciaDemandaProduccion>0) {
 			numeroDespidos=(int) (diferenciaDemandaProduccion/1000)+1;
 			for(int i=0; i<numeroDespidos; i++) {
+				if (!demandantes.isEmpty()) {
+					
 				bajaTrabajador(demandantes);
+				}
 			}
 		}
 	}
