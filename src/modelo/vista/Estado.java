@@ -10,6 +10,7 @@ public class Estado {
 	private Censo poblacion = new Censo();
 	
 	public Estado() {
+		contratarDespedir();
 		
 	}
 
@@ -20,7 +21,6 @@ public class Estado {
 		industrias.eliminaIndustrias();
 		controlTiempo.realizarCiclo(poblacion.getPoblacion());
 
-		System.out.println(poblacion.getDemandantes().size());
 	}
 	private void contratarDespedir() {
 		industrias.jubilarTrabajadores();
@@ -34,6 +34,7 @@ public class Estado {
 		}else if(cantidad<0) {
 			industrias.despedirTrabajadores(poblacion.getDemandantes());
 		}
+		industrias.calcularProduccionTotal();
 		poblacion.actualizarDemandantes(trabajadores);
 	}
 	private void gestionSeres() {
